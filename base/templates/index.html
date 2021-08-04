@@ -1,0 +1,577 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- css -->
+    <!-- <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/nav.css"> -->
+    <link rel="stylesheet" href="{% static "base/css/style.css" %}"/>
+    <link rel="stylesheet" href="{% static "base/css/nav.css" %}"/>
+
+
+    <!-- boostrap -->
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+
+    <!-- Material Design icons web -->
+    <!-- <link rel="stylesheet" href="fonts/icomoon/style.css"/> -->
+    <link rel="stylesheet" href="{% static "base/fonts/icomoon/style.css" %}"/>
+
+    <!-- Chart js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Google charts -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+
+
+
+    <title>Análisis COVID</title>
+</head>
+<body>
+
+            <!-- NAV -->
+            <section>
+                <header class="header">
+                    <nav class="navbar">
+                        <a href="" class="nombre-logo">Análisis COVID</a>
+                        
+                        <!-- Icons -->
+                        <!-- <span class="icon-facebook"></span> -->
+                        <a href="{{ sociales.facebook }}" class="color-icon color-social" target="_blank"><span class="icon-facebook"></span></a>
+                        <a href="{{ sociales.twitter }}" class="color-icon color-social" target="_blank"><span class="icon-twitter"></span></a>
+                        <a href="{{ sociales.instagram }}" class="color-icon color-social" target="_blank"><span class="icon-instagram"></span></a>
+                        <a href="{{ sociales.github }}" class="color-icon color-social" target="_blank"><span class="icon-github"></span></a>
+                        <a href="{{ sociales.linkedin }}" class="color-icon color-social" target="_blank"><span class="icon-linkedin"></span></a>
+                        <a href="{{ autor.web }}" class="color-icon color-social" target="_blank"><span class="icon-info-circle"></span></a>
+    
+    
+                        <ul class="nav-menu">
+                            <li class="nav-item">
+                                <a href="" class="nav-link">Inicio</a>
+                            </li>
+                            <!-- <li class="nav-item">
+                                <a href="" class="nav-link">Categorias</a>
+                            </li> -->
+                            <!-- <li class="nav-item">
+                                <a href="" class="nav-link">Contacto</a>
+                            </li> -->
+                        </ul>
+                        <div class="hamburger">
+                            <span class="bar"></span>
+                            <span class="bar"></span>
+                            <span class="bar"></span>
+                        </div>
+                    </nav>
+                </header>  
+            </section>
+            <!-- END NAV -->
+
+            <!-- titulo -->
+            <section>
+                <div class="container">
+                    <h1 class="titulo">Análisis COVID</h1>
+                </div>
+            </section>
+
+            <!-- Resumen -->
+            <section>
+                <div class="container">
+                    <div class="row">
+                        <div class="resumen-forma">
+                            <h2 class="titulo-forma">Contagiados</h2>
+                            <h3 class="titulo-resultado">No. {{contagio}}</h3>
+                        </div>
+                        <div class="resumen-forma">
+                            <h2 class="titulo-forma">Fallecidos</h2>
+                            <h3 class="titulo-resultado">No. {{fallecido}}</h3>
+                        </div>
+                        <div class="resumen-forma">
+                            <h2 class="titulo-forma">Vacunados</h2>
+                            <h3 class="titulo-resultado">No. {{vacunado}}</h3>
+                        </div>
+                        <div class="resumen-forma">
+                            <h2 class="titulo-forma">Fecha de reporte</h2>
+                            <h3 class="titulo-resultado">{{fecha}} </h3>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- Dashboard -->
+            {% block cuerpo %}
+            <section>
+                <div class="container">
+                    <!-- selector -->
+                    <div class="selector_container">
+                        <select class="selector">
+                            <option value="contagiados">Contagiados</option>
+                            <option value="fallecidos">Fallecidos</option>
+                            <option value="vacunados">Vacunados</option>
+                        </select>
+                    </div>
+                    <div class="row">
+                        <!-- Total contagios por fecha -->
+                        <div class="col-10 col-sm-5 col-md-5 part1">
+                            <div>
+                                <h3 class="titulo_graph" id="Total_fecha" >Total contagios por fecha</h3>
+                            </div>
+                            <div class="graph" >
+                                <canvas id="myChart"></canvas>
+                            </div>
+                        </div>
+                        <!-- Mapa -->
+                        <div class="col-10 col-sm-5 col-md-5 part1">
+                            <div>
+                                <h3 class="titulo_graph" id="estado_mapa">Mapa Contagiados</h3>
+                            </div>
+                            <div class="graph" >
+                                <div id="regions_div" style="height: 500px; background-color:e9edc9;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!-- 20 primeros-->
+                        <div class="col-10 col-sm-10 col-md-10 part1">
+                            <div>
+                                <h3 class="titulo_graph" id ="20_paises" >20 paises con más contagios</h3>
+                            </div>
+                            <div class="graph" >
+                                <canvas id="myChart3"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!-- Continente -->
+                        <div class="col-10 col-sm-5 col-md-5 part1">
+                            <div>
+                                <h3 class="titulo_graph" id="contienete_datos">Total contagios por contiente</h3>
+                            </div>
+                            <div class="graph" >
+                                <canvas id="myChart4"></canvas>
+                            </div>
+                        </div>
+                        <!-- Tabla -->
+                        <div class="col-10 col-sm-5 col-md-5 part1">
+                            <div>
+                                <h3 class="titulo_graph">Tabla resumen por país</h3>
+                            </div>
+
+                            <div class="table_data">
+
+                                <table id="example" class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <td>País</td>
+                                            <td>Total contagiados</td>
+                                            <td>Total fallecidos</td>
+                                            <td>Total vacunados</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% if d %}  
+                                        {% for i in d %}
+                                        <tr>
+                                            <td>{{i.País}}</td>
+                                            <td>{{i.Total_contagiados}}</td>
+                                            <td>{{i.Total_fallecidos}}</td>
+                                            <td>{{i.Total_vacunados}}</td>
+                                        </tr>
+                                        {% endfor %}
+                                        {% endif %}
+                                    </tbody>
+                                </table>
+
+                            </div>
+
+
+                           
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-10 col-sm-10 col-md-10 part1">
+                            <div>
+                                <h3 class="titulo_graph">Vacunación</h3>
+                            </div>
+                            <div class="graph" >
+                                <canvas id="myChart6"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {% endblock %}
+            <!-- footer -->
+
+            <section>
+                <div class="footer_part1">
+                    <div class="footer_part2">
+                        <div class="row">
+                            <div class="col-12 col-sm-7 col-md-7">
+                                <h3 class="titulo-footer">Acerca</h3>
+                                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Placeat accusantium consectetur facere rem et atque quae eveniet impedit, sunt est unde dolorem fuga sequi a animi officia voluptate ratione asperiores!</p>
+                            </div>
+                            <div class="col-11 col-sm-3 col-md-3">
+                                <div>
+                                    <h3 class="titulo-footer">Contacto</h3>
+                                </div>
+                                <div class="grid_tool">
+                                    <a href="{{ sociales.facebook }}" class="color-icon color-social" target="_blank"><span class="icon-facebook"></span></a>
+                                    <a href="{{ sociales.twitter }}" class="color-icon color-social" target="_blank"><span class="icon-twitter"></span></a>
+                                    <a href="{{ sociales.instagram }}" class="color-icon color-social" target="_blank"><span class="icon-instagram"></span></a>
+                                    <a href="{{ sociales.github }}" class="color-icon color-social" target="_blank"><span class="icon-github"></span></a>
+                                    <a href="{{ sociales.linkedin }}" class="color-icon color-social" target="_blank"><span class="icon-linkedin"></span></a>
+                                    <a href="mailto:andrestrianareina@outlook.com" class="color-icon color-social"><span class="icon-mail_outline"></span></a>
+                                    <a href="{{ autor.web }}" class="color-icon color-social" target="_blank"><span class="icon-info-circle"></span></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="pDesing">Design by Andrés Triana - 2021</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+    <!-- javascript -->
+
+    
+    <script src="{% static "base/js/nav.js" %}"></script>
+    <script src="{% static "base/js/graph.js" %}"></script>
+    <!-- jQuery -->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> 
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+    <!-- paginator table -->
+    <script src="{% static "base/js/jquery.simplePagination.js" %}"></script>
+    <script>
+		$(function() {
+			$("#example").simplePagination({
+				previousButtonClass: "btn btn-danger",
+				nextButtonClass: "btn btn-danger"
+			});
+
+
+		});
+	</script>
+
+    <!-- // total contagios, fallecidos y vacunados -->
+    <script>
+        
+
+        var fechas = {{fecha_contagios|safe}};
+        var contagiados = {{total_contagiados|safe}};
+        var fallecidos = {{total_fallecidos|safe}};
+        var vacunados = {{total_vacunados|safe}};
+        
+        let miCanvas = document.getElementById('myChart').getContext("2d");
+
+
+        var chart = new Chart(miCanvas, {
+                type: "line",
+                data: {
+                labels: fechas,
+                datasets: [{
+                    data: contagiados,
+                    label: 'Contagiados',
+                    barThickness:'flex',
+                    backgroundColor:'#03a9fc',  
+                },
+                ]
+                },
+                options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                }
+            })
+
+        var fechas;
+        var estado;
+        document.querySelector('.selector').addEventListener("change",changeText);
+
+        function changeText(event){
+            if(event.target.value === "contagiados"){
+                // console.log(1)
+                estado = contagiados;
+                NewLabel = 'Contagiados'
+                // console.log(estado);
+                // chart.labels.data = fechas
+                chart.data.datasets[0].data = estado
+                chart.data.datasets[0].label = NewLabel;
+                // var other = chart.data.datasets[0]
+                // console.log(chart.data.datasets)
+                chart.update();
+
+                document.getElementById('Total_fecha').innerHTML='Total contagios por fecha';
+                
+        }
+            else if(event.target.value === "fallecidos"){
+                // console.log(2);
+                estado = fallecidos;
+                NewLabel = 'Fallecidos'
+                // console.log(estado);
+                // chart.labels.data = fechas
+                chart.data.datasets[0].data = estado;
+                chart.data.datasets[0].label = NewLabel;
+                // var other = chart.data.datasets[0]
+                // console.log(chart.data.datasets)
+                chart.update();
+
+                document.getElementById('Total_fecha').innerHTML='Total fallecidos por fecha';
+
+        }
+            else {
+                // console.log(3);
+                estado = vacunados;
+                NewLabel = 'Vacunados'
+                // console.log(estado);
+                // chart.labels.data = fechas
+                chart.data.datasets[0].data = estado;
+                chart.data.datasets[0].label = NewLabel;
+                // var other = chart.data.datasets[0]
+                // console.log(chart.data.datasets)
+                chart.update();
+
+                document.getElementById('Total_fecha').innerHTML='Total vacunados por fecha';
+
+            }
+        }
+        
+
+        
+    </script>
+
+    <!-- 20 paises -->
+    <script>
+
+    var paisC = {{N_pais20contagios|safe}}
+    var NumeroC = {{C_pais20contagios|safe}}
+    var paisF = {{N_pais20fallecidos|safe}}
+    var NumeroF = {{C_pais20fallecidos|safe}}
+    var paisV = {{N_pais20vacunados|safe}}
+    var NumeroV = {{C_pais20vacunados|safe}}
+
+
+    let miCanvas3 = document.getElementById('myChart3').getContext("2d");
+
+
+        var chart3 = new Chart(miCanvas3, {
+                type: "bar",
+                data: {
+                labels: paisC,
+                datasets: [{
+                    data: NumeroC,
+                    label: 'Contagiados',
+                    barThickness:'flex',
+                    backgroundColor:'#03a9fc',  
+                    
+                },
+                ]
+                },
+                options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                }
+            })
+
+        document.querySelector('.selector').addEventListener("change",changeText);
+
+        function changeText(event){
+            if(event.target.value === "contagiados"){
+                Label3 = paisC;
+                estado3 = NumeroC;
+                NewLabel3 = 'Contagiados'
+                chart3.data.labels = Label3;
+                chart3.data.datasets[0].data = estado3;
+                chart3.data.datasets[0].label = NewLabel3;
+                chart3.update();
+
+                document.getElementById('20_paises').innerHTML='20 paises con más contagios';
+
+        }
+            else if(event.target.value === "fallecidos"){
+                Label3 = paisF;
+                estado3 = NumeroF;
+                NewLabel3 = 'Fallecidos';
+                chart3.data.labels = Label3;
+                chart3.data.datasets[0].data = estado3;
+                chart3.data.datasets[0].label = NewLabel3;
+                chart3.update();
+
+                document.getElementById('20_paises').innerHTML='20 paises con más fallecidos';
+
+        }
+            else {
+                Label3 = paisV;
+                estado3 = NumeroV;
+                NewLabel3 = 'Vacunados'
+                chart3.data.labels = Label3;
+                chart3.data.datasets[0].data = estado3;
+                chart3.data.datasets[0].label = NewLabel3;
+                chart3.update();
+
+                document.getElementById('20_paises').innerHTML='20 paises con más vacunados';
+            }
+        }
+    </script>
+
+    <!-- Pie contiente -->
+    <script>
+
+        var contienteN = {{contientesNombre|safe}}
+        var contienteC = {{continentesContagios|safe}}
+        var contienteF = {{continentesFallecidos|safe}}
+        var contienteV = {{continentesVacunados|safe}}
+
+
+        let miCanvas4 = document.getElementById('myChart4').getContext("2d");
+
+        var chart4 = new Chart(miCanvas4, {
+                type: "pie",
+                data: {
+                labels: contienteN,
+                datasets: [{
+                    data: contienteC,
+                    label: 'Contagiados',
+                    barThickness:'flex',
+                    backgroundColor: [
+                        'rgb(255, 99, 132)',
+                        'rgb(54, 162, 235)',
+                        'rgb(255, 205, 86)',
+                        'rgb(255, 150, 120)',
+                        'rgb(200, 162, 235)',
+                        'rgb(255, 100, 86)'
+                        ],   
+                },
+                ]
+                },
+                options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                }
+            })
+
+            document.querySelector('.selector').addEventListener("change",changeText);
+
+        function changeText(event){
+            if(event.target.value === "contagiados"){
+                estado4 = contienteC;
+                NewLabel4 = 'Contagiados'
+                chart4.data.datasets[0].data = estado4
+                chart4.data.datasets[0].label = NewLabel4;
+                chart4.update();
+
+                document.getElementById('contienete_datos').innerHTML='Total contagios por contiente';
+
+        }
+            else if(event.target.value === "fallecidos"){
+                estado4 = contienteF;
+                NewLabel4 = 'Fallecidos'
+                chart4.data.datasets[0].data = estado4;
+                chart4.data.datasets[0].label = NewLabel4;
+                chart4.update();
+
+                document.getElementById('contienete_datos').innerHTML='Total fallecidos por contiente';
+
+
+        }
+            else {
+                estado4 = contienteV;
+                NewLabel4 = 'Vacunados'
+                chart4.data.datasets[0].data = estado4;
+                chart4.data.datasets[0].label = NewLabel4;
+                chart4.update();
+
+                document.getElementById('contienete_datos').innerHTML='Total vacuandos por contiente';
+            }
+        }
+
+    </script>
+
+    <script type="text/javascript">
+
+        var datos = {{map_final_contagiados|safe}}
+        var datos_contagiados = {{map_final_contagiados|safe}}
+        var datos_fallecidos = {{map_final_fallecidos|safe}}
+        var datos_vacunados = {{map_final_vacunados|safe}}
+
+        document.querySelector('.selector').addEventListener("change",changeText);
+
+        function changeText(event){
+            if(event.target.value === "contagiados"){
+                var datos = datos_contagiados;
+                google.charts.setOnLoadCallback(drawRegionsMap);
+
+                function drawRegionsMap() {
+                var data = google.visualization.arrayToDataTable(datos);
+
+                var options = {};
+
+                var chartMap = new google.visualization.GeoChart(document.getElementById('regions_div'));
+
+                chartMap.draw(data, options);
+                }
+                document.getElementById('estado_mapa').innerHTML='Mapa Contagiados';
+                
+        }
+            else if(event.target.value === "fallecidos"){
+                var datos = datos_fallecidos;
+                google.charts.setOnLoadCallback(drawRegionsMap);
+
+                function drawRegionsMap() {
+                var data = google.visualization.arrayToDataTable(datos);
+
+                var options = {};
+
+                var chartMap = new google.visualization.GeoChart(document.getElementById('regions_div'));
+
+                chartMap.draw(data, options);
+                }
+                document.getElementById('estado_mapa').innerHTML='Mapa Fallecidos';
+        }
+            else {
+                var datos = datos_vacunados;
+                google.charts.setOnLoadCallback(drawRegionsMap);
+
+                function drawRegionsMap() {
+                var data = google.visualization.arrayToDataTable(datos);
+
+                var options = {};
+
+                var chartMap = new google.visualization.GeoChart(document.getElementById('regions_div'));
+
+                chartMap.draw(data, options);
+                }
+                document.getElementById('estado_mapa').innerHTML='Mapa Vacunados';
+            }
+        }
+
+
+        google.charts.load('current', {
+        'packages':['geochart'],
+        });
+        google.charts.setOnLoadCallback(drawRegionsMap);
+
+        function drawRegionsMap() {
+        var data = google.visualization.arrayToDataTable(datos);
+
+        var options = {};
+
+        var chartMap = new google.visualization.GeoChart(document.getElementById('regions_div'));
+
+        chartMap.draw(data, options);
+        }
+
+    </script>
+    
+</body>
+</html>

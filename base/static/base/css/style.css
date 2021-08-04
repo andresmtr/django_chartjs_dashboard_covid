@@ -1,0 +1,150 @@
+/* Paleta colores */
+/* #ccd5ae,#e9edc9,#fefae0,#faedcd,#d4a373 */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Nav */
+.nombre-logo{
+    color:#272727;
+}
+
+.color-social{
+    color:#272727;
+}
+
+.titulo{
+    text-align: center;
+    padding: 3rem
+}
+
+/* Resumen */
+
+.resumen-forma{
+
+    margin: 10px auto;
+    padding: 10px .3em;
+    height: 130px;
+    width: 260px;
+
+    border-radius: 10px;
+    text-align: center;
+    justify-content:center;
+    background-color: #e9edc9;
+
+}
+
+.titulo-forma{
+    font-size: 170%;
+    padding: 10px .3em;
+}
+
+.titulo-resultado{
+    font-size: 130%
+}
+
+/* Dasboard */
+
+.selector_container{
+    margin: 10px auto;
+    padding: 10px auto;
+    text-align: center;
+    align-items: center;
+    border-radius: 10px;
+    background-color: #ccd5ae;
+
+}
+
+.selector{
+    text-align: center;
+    align-items: center;
+}
+
+select {
+    background: transparent;
+    border: none;
+    font-size: 14px;
+    height: 30px;
+    padding: 5px;
+    width: 250px;
+    text-align: center;
+    align-items: center;
+ }
+
+
+.boton_container{
+    padding: 10px .1em;
+    text-align: center;
+    align-items: center;
+}
+
+.boton{
+    margin: 30px auto;
+    padding: 30px .1em;
+}
+
+.part1{
+    margin: 5px auto;
+    padding: 5px auto;
+    text-align: center;
+    align-items: center;
+    height: 600px;
+    border-radius: 10px;
+    background-color: #e9edc9;
+}
+
+.titulo_graph{
+    font-size: 100%;
+    padding: 30px .1em;
+}
+
+.graph{
+    width: 100%;
+    height: 72%;
+    text-align: center;
+    align-items: center;
+}
+
+/* table */
+
+.table_data{
+    font-size: 55%;
+    width: 100%;
+    height: 90%;
+
+}
+
+/* Footer */
+
+.footer_part1{
+    background-color:#ccd5ae;
+}
+
+.footer_part2{
+    margin: 10px;
+    padding: 50px .5em;
+    justify-content:center;
+}
+
+.titulo-footer{
+    font-size: 190%;
+    padding: 30px .1em;
+}
+
+.grid_tool{
+    align-items: center;
+    text-align: center;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 100px;
+    grid-gap: 10px;
+  }
+
+.pDesing{
+    padding: 20px .5em;
+    align-items: center;
+    text-align: center;
+}
