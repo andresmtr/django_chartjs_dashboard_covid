@@ -145,6 +145,6 @@ select {
 
 .pDesing{
     padding: 20px .5em;
-    align-items: center;
     text-align: center;
+    align-items: center;
 }

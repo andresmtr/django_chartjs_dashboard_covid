@@ -50,19 +50,13 @@
                         <a href="{{ sociales.instagram }}" class="color-icon color-social" target="_blank"><span class="icon-instagram"></span></a>
                         <a href="{{ sociales.github }}" class="color-icon color-social" target="_blank"><span class="icon-github"></span></a>
                         <a href="{{ sociales.linkedin }}" class="color-icon color-social" target="_blank"><span class="icon-linkedin"></span></a>
-                        <a href="{{ autor.web }}" class="color-icon color-social" target="_blank"><span class="icon-info-circle"></span></a>
+                        <a href="{{ sociales.web }}" class="color-icon color-social" target="_blank"><span class="icon-info-circle"></span></a>
     
     
                         <ul class="nav-menu">
                             <li class="nav-item">
                                 <a href="" class="nav-link">Inicio</a>
                             </li>
-                            <!-- <li class="nav-item">
-                                <a href="" class="nav-link">Categorias</a>
-                            </li> -->
-                            <!-- <li class="nav-item">
-                                <a href="" class="nav-link">Contacto</a>
-                            </li> -->
                         </ul>
                         <div class="hamburger">
                             <span class="bar"></span>
@@ -196,16 +190,6 @@
                            
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-10 col-sm-10 col-md-10 part1">
-                            <div>
-                                <h3 class="titulo_graph">Vacunación</h3>
-                            </div>
-                            <div class="graph" >
-                                <canvas id="myChart6"></canvas>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </section>
 
@@ -218,7 +202,8 @@
                         <div class="row">
                             <div class="col-12 col-sm-7 col-md-7">
                                 <h3 class="titulo-footer">Acerca</h3>
-                                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Placeat accusantium consectetur facere rem et atque quae eveniet impedit, sunt est unde dolorem fuga sequi a animi officia voluptate ratione asperiores!</p>
+                                <!-- <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Placeat accusantium consectetur facere rem et atque quae eveniet impedit, sunt est unde dolorem fuga sequi a animi officia voluptate ratione asperiores!</p> -->
+                                <p>{{ autor.descripcion }}</p>
                             </div>
                             <div class="col-11 col-sm-3 col-md-3">
                                 <div>
@@ -231,7 +216,7 @@
                                     <a href="{{ sociales.github }}" class="color-icon color-social" target="_blank"><span class="icon-github"></span></a>
                                     <a href="{{ sociales.linkedin }}" class="color-icon color-social" target="_blank"><span class="icon-linkedin"></span></a>
                                     <a href="mailto:andrestrianareina@outlook.com" class="color-icon color-social"><span class="icon-mail_outline"></span></a>
-                                    <a href="{{ autor.web }}" class="color-icon color-social" target="_blank"><span class="icon-info-circle"></span></a>
+                                    <a href="{{ sociales.web }}" class="color-icon color-social" target="_blank"><span class="icon-info-circle"></span></a>
                                 </div>
                             </div>
                         </div>

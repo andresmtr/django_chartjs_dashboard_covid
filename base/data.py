@@ -163,3 +163,7 @@ Continent_total_cases_deaths.fillna(0, inplace=True)
 table1 = pd.concat([Pais, Country_total_cases, Country_total_deaths, Country_total_people_vaccinated], axis=1)
 
 table1.columns = ['País','Total_contagiados', 'Total_fallecidos', 'Total_vacunados']
+
+table1.fillna(0, inplace=True)
+
+

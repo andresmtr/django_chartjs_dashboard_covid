@@ -38,7 +38,7 @@ class RedesSociales(ModeloBase):
     instagram = models.URLField('Instagram')
     github = models.URLField('Github')
     linkedin = models.URLField('Linkedin')
-    
+    web = models.URLField('Web', null=True)
 
     class  Meta:
         verbose_name = 'Red Social'
