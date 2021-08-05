@@ -13,8 +13,12 @@ Todos los requerimeintos de python
 #### django
 conda install -c anaconda django
 
-#### ckeditor
-pip install django-ckeditor
+#### pandas
+conda install -c anaconda pandas
 
-#### pillow
-conda install -c anaconda pillow
+#### json
+conda install -c jmcmurray json
+
+#### numpy
+conda install -c anaconda numpy
+
