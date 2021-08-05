@@ -193,6 +193,16 @@
                 </div>
             </section>
 
+            <section>
+                <div class="container">
+                    <div class="center-button-div">
+                        <h1 class="titulo">Referencias</h1>
+                        <a href="https://ourworldindata.org" class="btn btn-success center-button" target="_blank">Our World In Data</a>
+                    </div>
+                </div>
+                
+            </section>
+
             {% endblock %}
             <!-- footer -->
 
@@ -201,7 +211,9 @@
                     <div class="footer_part2">
                         <div class="row">
                             <div class="col-12 col-sm-7 col-md-7">
-                                <h3 class="titulo-footer">Acerca</h3>
+                                <h3 class="titulo-footer">Realizado por:</h3>
+
+                                <h4 class="titulo-footer">{{ autor.nombre }} {{ autor.apellidos }}</h4>
                                 <!-- <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Placeat accusantium consectetur facere rem et atque quae eveniet impedit, sunt est unde dolorem fuga sequi a animi officia voluptate ratione asperiores!</p> -->
                                 <p>{{ autor.descripcion }}</p>
                             </div>
@@ -232,7 +244,6 @@
 
     
     <script src="{% static "base/js/nav.js" %}"></script>
-    <script src="{% static "base/js/graph.js" %}"></script>
     <!-- jQuery -->
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> 
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
