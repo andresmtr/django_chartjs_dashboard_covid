@@ -54,6 +54,9 @@ actual = actual[actual['location'] != 'Africa']
 actual = actual[actual['location'] != 'European Union']  
 actual = actual[actual['location'] != 'South Africa']
 actual = actual[actual['location'] != 'Oceania']  
+actual = actual[actual['location'] != 'High income']
+actual = actual[actual['location'] != 'Upper middle income']
+actual = actual[actual['location'] != 'Lower middle income']
 
 ##################################
 #### For cases and deaths select
